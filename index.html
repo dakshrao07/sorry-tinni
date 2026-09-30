@@ -64,7 +64,7 @@ var el=document.getElementById('msg'),i=0;
 var h=document.getElementById('hearts'),set=['💖','💗','💕','🌸','✨'];
 for(var k=0;k<18;k++){var s=document.createElement('span');s.textContent=set[k%5];s.style.left=Math.random()*100+'%';s.style.fontSize=(14+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(Math.random()*8)+'s';h.appendChild(s)}
 
-var lines=["Please Tinni, CUTIEEE PATOOTIEEEEEEEE  🥺","Sorry sorry sorry! 🙏","AGLE birthday pr JOSESONN DONEE SMJH! 🍫","Your brother is really, really sorry 😭","please, Tinni Behan Ji? 💔"];
+var lines=["Please Tinni, CUTIEEE PATOOTIEEEEEEEE  🥺","Sorry sorry sorry! 🙏","AGLE birthday pr JOSESONN DONEE ","please, Tinni Behan Ji? 💔"];
 var n=0,no=document.getElementById('no'),yes=document.getElementById('yes'),q=document.getElementById('q'),emoji=document.getElementById('emoji'),scale=1;
 no.addEventListener('click',function(){
   q.textContent=lines[n%lines.length];n++;
