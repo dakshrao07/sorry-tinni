@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I'm Sorry, Tinni 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#ffe3ec;--bg2:#ffd1e3;--card:#ffffffd9;--text:#4a2040;--accent:#e91e63;--accent2:#ff6f91;--muted:#8a5a7a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2a1030;--bg2:#3d1440;--card:#ffffff14;--text:#ffe9f2;--muted:#e8b7d0}}
+:root[data-theme="dark"]{--bg1:#2a1030;--bg2:#3d1440;--card:#ffffff14;--text:#ffe9f2;--muted:#e8b7d0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Poppins',system-ui,sans-serif;color:var(--text);background:linear-gradient(135deg,var(--bg1),var(--bg2));display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.hearts span{position:absolute;bottom:-40px;animation:rise linear infinite;opacity:.6}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.card{position:relative;max-width:420px;width:100%;background:var(--card);backdrop-filter:blur(10px);border-radius:28px;padding:32px 24px;text-align:center;box-shadow:0 20px 50px #e91e6340;animation:pop .7s ease}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.emoji{font-size:64px;animation:beat 1.3s infinite}
+@keyframes beat{50%{transform:scale(1.15)}}
+h1{font-family:'Pacifico',cursive;font-weight:400;color:var(--accent);font-size:2.1rem;margin:10px 0}
+p{line-height:1.7;font-size:1.05rem;margin:10px 0}
+.typed{min-height:7.5em}
+.q{font-weight:600;margin-top:18px;color:var(--muted)}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;min-height:56px;align-items:center}
+button{font-family:inherit;font-size:1rem;font-weight:600;border:0;border-radius:50px;padding:14px 26px;cursor:pointer;transition:transform .2s}
+button:active{transform:scale(.95)}
+.yes{background:linear-gradient(45deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 20px #e91e6355}
+.no{background:#fff;color:var(--accent);border:2px solid var(--accent2)}
+.hide{display:none}
+footer{margin-top:26px;font-size:.85rem;color:var(--muted)}
+footer b{color:var(--accent)}
+#thanks h2{font-family:'Pacifico',cursive;font-weight:400;color:var(--accent);font-size:1.8rem;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<main class="card">
+  <div id="ask">
+    <div class="emoji" id="emoji">🥺</div>
+    <h1>I'm Sorry, Tinni</h1>
+    <p class="typed" id="msg"></p>
+    <div class="q" id="q">Will you forgive your silly brother? 💖</div>
+    <div class="btns">
+      <button class="yes" id="yes">Yes, I forgive you 💕</button>
+      <button class="no" id="no">Not yet 😒</button>
+    </div>
+  </div>
+  <div id="thanks" class="hide">
+    <div class="emoji">🥳</div>
+    <h2>Thank you, Tinni! 💖</h2>
+    <p>You're the best sister in the world.<br>I promise to be better. Love you always! 🤗</p>
+  </div>
+  <footer>Designed By <b>Daksh</b> for You (<b>Tinni Behan Ji</b>) 💝</footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+(function(){
+var text="Tinni, I know I hurt you, and I'm really sorry. You mean the world to me, and I never want to see you upset. Please forgive me. 🌸";
+var el=document.getElementById('msg'),i=0;
+(function type(){if(i<=text.length){el.textContent=text.slice(0,i++);setTimeout(type,35)}})();
+
+var h=document.getElementById('hearts'),set=['💖','💗','💕','🌸','✨'];
+for(var k=0;k<18;k++){var s=document.createElement('span');s.textContent=set[k%5];s.style.left=Math.random()*100+'%';s.style.fontSize=(14+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(Math.random()*8)+'s';h.appendChild(s)}
+
+var lines=["Please Tinni, one more chance? 🥺","Sorry sorry sorry! 🙏","I'll buy you chocolates! 🍫","Your brother is really, really sorry 😭","Pretty please, Tinni Behan Ji? 💔"];
+var n=0,no=document.getElementById('no'),yes=document.getElementById('yes'),q=document.getElementById('q'),emoji=document.getElementById('emoji'),scale=1;
+no.addEventListener('click',function(){
+  q.textContent=lines[n%lines.length];n++;
+  emoji.textContent=['😢','😭','🥹','🙏','💔'][n%5];
+  scale=Math.min(scale+0.12,1.6);yes.style.transform='scale('+scale+')';
+  no.style.transform='scale('+Math.max(1-n*0.1,0.6)+')';
+  no.textContent=['Hmm... 🤔','Still no 😤','Let me think 🙄','Maybe... 😏','Okay fine 🙈'][n%5];
+});
+
+function burst(){
+  if(typeof confetti!=='function')return;
+  var end=Date.now()+4000;
+  confetti({particleCount:180,spread:110,origin:{y:.6}});
+  (function f(){
+    confetti({particleCount:6,angle:60,spread:65,origin:{x:0,y:.8}});
+    confetti({particleCount:6,angle:120,spread:65,origin:{x:1,y:.8}});
+    if(Date.now()<end)requestAnimationFrame(f);
+  })();
+}
+yes.addEventListener('click',function(){
+  document.getElementById('ask').classList.add('hide');
+  document.getElementById('thanks').classList.remove('hide');
+  burst();setTimeout(burst,1500);
+});
+})();
+</script>
+</body>
+</html>
